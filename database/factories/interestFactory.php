@@ -23,7 +23,7 @@ class InterestFactory extends Factory
     {
         $word = $this->faker->word();
         return [
-            'name' => $word,
+            'interest' => $word
         ];
     }
 }

@@ -5,17 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Entity_city extends Model
+class Entity_interest extends Model
 {
     use HasFactory;
 
-    public function entity_city()
+    public function entity_interest()
     {
         return $this->morphTo('entity');
     }
-    public function getCity()
+    public function getInterest()
     {
-        $city = City::find($this->city_id);
-        return $city->city;
+        $interest = Interest::find($this->interest_id);
+        return $interest->interest;
     }
 }

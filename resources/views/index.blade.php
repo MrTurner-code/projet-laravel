@@ -5,11 +5,14 @@
 
 @section('content')
 @auth
-<div class="d-flex home justify-content-center align-items-center">
-    <div class="encart-register rounded shadow-lg bg-light">
+<div class="row justify-content-center align-items-center">
+    <div class="col rounded shadow-lg bg-light">
         <h1 class="text-center">Venez partagez vos passions</h1>
         <p>N'attendez plus ! trouvez rapidement une activité à faire avec les passionnées près de chez vous ! </p>
+<h2>Bienvenue {{Auth::user()->name}}</h2>
         {{Auth::user()->city->getCity()}}
+        <br>
+        {{Auth::user()->interest->getInterest()}}
 
     </div>
 </div>

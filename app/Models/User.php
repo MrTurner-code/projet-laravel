@@ -43,8 +43,8 @@ class User extends Authenticatable
     public function city(){
         return $this->morphOne(Entity_city::class, 'entity');
     }
-    public function getCity($id){
-        return $this->belongsTo(City::class);
+    public function interest(){
+        return $this->morphOne(Entity_interest::class, 'entity');
     }
 
 }
