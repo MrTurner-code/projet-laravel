@@ -12,7 +12,7 @@ class CityFactory extends Factory
      *
      * @var string
      */
-    protected $model = City_events::class;
+    protected $model = City::class;
 
     /**
      * Define the model's default state.
@@ -23,8 +23,6 @@ class CityFactory extends Factory
     {
         return [
             'city' => $this->faker->city(),
-            'zip' => $this->faker->postcode(),
-            'country' => $this->faker->region(),
             
         ];
     }

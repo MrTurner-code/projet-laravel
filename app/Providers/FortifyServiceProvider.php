@@ -6,6 +6,7 @@ use App\Actions\Fortify\CreateNewUser;
 use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
 use App\Actions\Fortify\UpdateUserProfileInformation;
+use App\Models\City;
 use App\Models\User;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
@@ -42,7 +43,8 @@ class FortifyServiceProvider extends ServiceProvider
             return view('auth.login');
         });
         Fortify::registerView(function(){
-            return view('auth.register');
+            $cities= City::all();
+            return view('auth.register', compact('cities'));
         });
         Fortify::authenticateUsing(function (Request $request) {
             $user = User::where('email', $request->email)->first();

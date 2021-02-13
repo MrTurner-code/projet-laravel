@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Event_city;
+use App\Models\City;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,6 +14,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Event_city::factory()->count(10)->create();
+        City::factory()->count(10)->create();
     }
 }

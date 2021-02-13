@@ -40,4 +40,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function city(){
+        return $this->morphOne(Entity_city::class, 'entity');
+    }
+    public function getCity($id){
+        return $this->belongsTo(City::class);
+    }
+
 }

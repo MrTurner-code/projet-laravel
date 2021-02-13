@@ -60,16 +60,16 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
-                        <select name="city" class="form-select">
-                            <option id="select_title" value="select" selected>Veuillez nous indiquez votre ville</option>
-                            <option value="paris">paris</option>
-                            <option value="bordeaux">bordeaux</option>
-                            <option value="lyon">lyon</option>
-                            <option value="marseille">marseille</option>
-                            <option value="nantes">nantes</option>
-                            <option value="strasbourg">strasbourg</option>
-
-                        </select>
+                        <div class="form-group row">
+                            <div class="col-md-6 offset-md-4">
+                                <select name="city" class="form-select">
+                                    @foreach ($cities as $city)
+                                    <option value="{{$city->id}}">{{$city->city}}</option>
+                                
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
