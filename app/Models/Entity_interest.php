@@ -8,10 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Entity_interest extends Model
 {
     use HasFactory;
-
+protected $fillable=['entity','interest_id'];
     public function entity_interest()
     {
-        return $this->morphTo('entity');
+        return $this->morph('entity');
     }
     public function getInterest()
     {

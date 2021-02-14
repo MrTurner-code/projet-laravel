@@ -1,5 +1,5 @@
 <header class="navbar-laravel">
-    <nav class="navbar navbar-expand-lg shadow-lg">
+    <nav class="navbar navbar-expand-lg position-fixed w-100 shadow-lg">
         <div class="container-fluid">
             <a href="{{ route('index') }}" class="navbar-brand">
                 <h2 class="navbar-title">OuTogether</h2>

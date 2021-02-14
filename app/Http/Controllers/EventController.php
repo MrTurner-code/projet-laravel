@@ -2,7 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\City;
+use App\Models\Entity_city;
+use App\Models\Entity_interest;
 use App\Models\Event;
+use App\Models\Interest;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
@@ -15,7 +21,7 @@ class EventController extends Controller
     public function index()
     {
         $events = Event::all();
-        return view('home')->with('events', $events);
+        return view('index', ['events'=>$events]);
     }
 
     /**
@@ -25,7 +31,9 @@ class EventController extends Controller
      */
     public function create()
     {
-        return view('event.create');
+        $interests = Interest::all();
+        $cities = City::all();
+        return view('event.create', compact('cities', 'interests'));
     }
 
     /**
@@ -36,22 +44,37 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        Event::create($request->all());
+
+        $request['user_id'] = $request->user()->id;
+        $event = Event::create($request->except(['_token']));
+        $city = [
+            "city_id" => $request['city'],
+            "entity_id" => $event->id,
+        ];
+        $interest = [
+            "interest_id" => $request['interest'],
+            "entity_id" => $event->id
+        ];
+        $event->city()->create($city);
+        $event->interest()->create($interest);
+
 
         return redirect()
-            ->route('home')
+            ->route('index')
             ->with('info', 'Votre évènement est en ligne');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Event $event)
     {
-        //
+        $interest = $event->interest();
+        $city = $event->city();
+        $user = $event->user();
+        return view('event.show', compact('event','user','city','interest'));
     }
 
     /**
@@ -87,5 +110,4 @@ class EventController extends Controller
     {
         //
     }
-    
 }

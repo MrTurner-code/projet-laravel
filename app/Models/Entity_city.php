@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Entity_city extends Model
 {
     use HasFactory;
-
+protected $fillable = ['city_id', 'entity_type', 'entity_id',];
     public function entity_city()
     {
         return $this->morphTo('entity');

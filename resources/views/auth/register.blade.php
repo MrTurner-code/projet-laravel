@@ -70,7 +70,7 @@
                             <div class="form-group row">
                                 <label for="interest" class="col-md-4 col-form-label">Vos centre d'intérêts</label>
                                 <div class="col-md-6">
-                                    <select name="interest" id="select-interest" class="form-select" multiple>
+                                    <select name="interest" id="select-interest" class="form-select">
                                         @foreach ($interests as $interest)
                                             <option value="{{ $interest->id }}">{{ $interest->interest }}</option>
                                         @endforeach

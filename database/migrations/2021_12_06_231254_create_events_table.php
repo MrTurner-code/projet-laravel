@@ -12,19 +12,15 @@ class CreateEventsTable extends Migration
      * @return void
      */
     public function up()
-    { Schema::disableForeignKeyConstraints();
+    {
         Schema::create('events', function (Blueprint $table) {
             $table->integerIncrements('id');
-            $table->dateTime('date')->comment('Date de l\'évènement');
-            $table->unsignedInteger('creator_id');
-            $table->unsignedInteger('city');
+            $table->timestamp('dateEvent')->comment('Date de l\'évènement');
+            $table->integer('user_id')->unsigned()->comment('créateur de l\'évènement')->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->string('name');
-            $table->string('interest');
             $table->text('description');
             $table->timestamps();
-
-            $table->foreign('creator_id')->references('id')->on('users');
-            $table->foreign('id')->references('id')->on('event_cities');
 
         });
     }
