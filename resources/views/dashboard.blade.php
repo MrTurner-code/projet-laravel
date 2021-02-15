@@ -2,6 +2,7 @@
 @section('title') Dashboard @endsection
 @section('content')
     <div class="container">
+
         <div class="row">
             <div class="col">
                 <h2>Bonjour, vous vous appelez {{ Auth::user()->name }}</h2>
@@ -12,16 +13,19 @@
         <div class="row">
             <h4>l'historique de vos sorties</h4>
             @if (Auth::user()->event)
-@foreach ( Auth::user()->event as $event)
-<div class="card">
-  <div class="card-body">
-    <h5 class="card-title">{{$event->name}}</h5>
-    <p class="card-text">{{$event->description}}</p>
-		<p class="card-text">theme : {{$event->interest->getInterest()}}</p>
-		<p class="card-text">city : {{$event->city->getCity()}}</p>
-  </div>
-</div>
-@endforeach
+                @foreach (Auth::user()->event as $event)
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $event->name }}</h5>
+                            <p class="card-text">{{ $event->description }}</p>
+                            <p class="card-text">theme : {{ $event->interest->getInterest() }}</p>
+                            <p class="card-text">city : {{ $event->city->getCity() }}</p>
+                        </div>
+												@if (Auth::user()->get_messages)
+														<a href="{{route('user.message',$event->id)}}">vous avez reçu un nouveau message</a>
+												@endif
+                    </div>
+                @endforeach
             @endif
         </div>
         <div class="row">

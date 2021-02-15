@@ -17,8 +17,10 @@ class CreateEventsTable extends Migration
             $table->integerIncrements('id');
             $table->timestamp('dateEvent')->comment('Date de l\'évènement');
             $table->integer('user_id')->unsigned()->comment('créateur de l\'évènement')->nullable();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('name');
+            $table->unsignedInteger('participants')->nullable();
+            $table->foreign('participants')->references('id')->on('users');
             $table->text('description');
             $table->timestamps();
 

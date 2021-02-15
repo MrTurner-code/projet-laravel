@@ -10,9 +10,6 @@
             <h1 class="text-center">Venez partagez vos passions</h1>
             <p>N'attendez plus ! trouvez rapidement une activité à faire avec les passionnées près de chez vous ! </p>
             <h2>Bienvenue {{ Auth::user()->name }}</h2>
-            {{ Auth::user()->city->getCity() }}
-            <br>
-            {{ Auth::user()->interest->getInterest() }}
             @if (session()->has('info'))
                 <div class="alert alert-success">{{ session('info') }}</div>
             @endif
@@ -24,10 +21,12 @@
             @foreach ($events as $event)
             @if ($event->city->getCity() == Auth::user()->city->getCity() && $event->user->id != Auth::user()->id)
                 <div class="col-10">
-                    <div class="border rounded shadow-lg bg-light">
-                        <h3><a href="{{route('event.show',$event->id)}}">{{ $event->name }}</a></h3>
-                        {{ $event->city->getCity() }}
-                        {{$event->user}}
+                    <div class="card rounded shadow-lg bg-light">
+                        <div class="card-body">
+                            <h3 class="card-title"><a href="{{route('event.show',$event->id)}}">{{ $event->name }}</a></h3>
+                            {{ $event->city->getCity() }}
+                            {{$event->user}}
+                        </div>
                     </div>
                 </div>
             @endif
@@ -36,9 +35,9 @@
 <h3 class="mt-5 mb-5">Toutes les sorties existantes sur notre site</h3>
             @foreach ($events as $event)
             @if ($event->user->id != Auth::user()->id)
-                <div class="col-10">
-                    <div class="border rounded shadow-lg bg-light">
-                        <h3><a href="{{route('event.show',$event->id)}}">{{ $event->name }}</a></h3>
+                <div class="card">
+                    <div class="card-body rounded shadow-lg bg-light">
+                        <h3 class="card-title"><a href="{{route('event.show',$event->id)}}">{{ $event->name }}</a></h3>
                         {{ $event->city->getCity() }}
                     </div>
                 </div>

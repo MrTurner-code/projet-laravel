@@ -4,6 +4,8 @@ use App\Http\Controllers\AppController;
 use App\Http\Controllers\EventController;
 use App\Models\City;
 use App\Models\Interest;
+use App\Models\Message;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
@@ -33,5 +35,8 @@ Route::middleware('auth')->group(
             $cities = City::all();
             return view('user.edit', compact('interests', 'cities'));
         })->name('user.edit');
+        Route::post('/event/{id}/join/{id_user}', [EventController::class, 'send_message'])->name('event.join');
+        Route::get('/event/messagerie/{id}/', [EventController::class, 'messages'])->name('user.message');
+        Route::get('/event/messagerie/', [EventController::class, 'messagerie'])->name('user.messagerie');
     }
 );

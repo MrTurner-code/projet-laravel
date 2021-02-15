@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\City;
 use App\Models\Event;
 use App\Models\Interest;
+use App\Models\Message;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
@@ -17,7 +20,7 @@ class EventController extends Controller
     public function index()
     {
         $events = Event::all();
-        return view('index', ['events'=>$events]);
+        return view('index', ['events' => $events]);
     }
 
     /**
@@ -70,7 +73,7 @@ class EventController extends Controller
         $interest = $event->interest();
         $city = $event->city();
         $user = $event->user();
-        return view('event.show', compact('event','user','city','interest'));
+        return view('event.show', compact('event', 'user', 'city', 'interest'));
     }
 
     /**
@@ -106,7 +109,29 @@ class EventController extends Controller
     {
         //
     }
-    public function join(){
-        
+    public function send_message(Request $request, $idEvent, $idUser)
+    {
+        $event = Event::find(1)->where('id', $idEvent)->first();
+        $user = User::find(1)->where('id', $idUser)->first();
+        $message = Message::create([
+            "from_id" => Auth::user()->id,
+            "to_id" => $event->user_id,
+            "message" => $request->input('message'),
+            "event_id" => $event->id,
+        ]);
+
+        return back()->with('info', 'votre message a bien été envoyer à l\'organisateur de cette annnonce');
+    }
+    public function messages($event_id)
+    {
+        $event = Event::find(1)->where('id', $event_id)->first();
+        $messages = Message::all()->where('event_id', $event_id);
+
+        return view('user.message', compact('messages'));
+    }
+    public function messagerie()
+    {
+        $user = User::find(1)->where('id', Auth::user()->id);
+        return view('user.messagerie', compact('user'));
     }
 }
