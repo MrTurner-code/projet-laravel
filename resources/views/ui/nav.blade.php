@@ -1,5 +1,5 @@
 <header class="navbar-laravel">
-    <nav class="navbar navbar-expand-lg position-fixed w-100 shadow-lg">
+    <nav class="navbar navbar-expand-lg position-sticky w-100 shadow-lg">
         <div class="container-fluid">
             <a href="{{ route('index') }}" class="navbar-brand">
                 <h2 class="navbar-title">OuTogether</h2>
@@ -19,7 +19,7 @@
                             <a href="{{ route('logout') }}" id="logoutLink" class="nav-link">Déconnexion</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('event.create') }}" class="nav-link">Proposez une sortie</a>
+                            <a href="{{ route('event.create') }}" class="nav-link">Proposer une sortie</a>
                         </li>
                         <form method="POST" class="none" action="{{ route('logout') }}" id="logoutForm">
                             @csrf

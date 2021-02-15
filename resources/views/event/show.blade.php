@@ -1,7 +1,7 @@
 @extends('ui/base')
 
 @section('content')
-    <div class="row vh-100 d-flex justify-content-center align-items-center">
+    <div class="row ">
         <div class="col shadow blue-200 rounded">
             <div class="row">
                 <div class="col">
@@ -25,12 +25,5 @@
                 </div>
             </div>
         </div>
-            
-        
-
     </div>
-
-
-
-
 @endsection

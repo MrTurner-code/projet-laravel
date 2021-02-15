@@ -3,12 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\City;
-use App\Models\Entity_city;
-use App\Models\Entity_interest;
 use App\Models\Event;
 use App\Models\Interest;
-use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
@@ -109,5 +105,8 @@ class EventController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function join(){
+        
     }
 }

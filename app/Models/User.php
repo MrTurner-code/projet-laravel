@@ -46,5 +46,8 @@ class User extends Authenticatable
     public function interest(){
         return $this->morphOne(Entity_interest::class, 'entity');
     }
+    public function event(){
+        return $this->hasMany(Event::class);
+    }
 
 }
